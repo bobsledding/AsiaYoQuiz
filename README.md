@@ -18,3 +18,8 @@ GROUP BY rooms.bnb_id
 ORDER BY may_amount DESC
 LIMIT 10;
 ```
+
+## 題目二
+ Q: 在題目一的執行下，我們發現 SQL 執行速度很慢，您會怎麼去優化？請闡述您怎麼判斷與優化的方式
+
+ A: 我通常先下 `EXPLAIN` 去看, 看哪段步驟所需要查詢的資料量最多, 雖然我並未真的針對此題去建DB, 但根據經驗, 查 `created_at` 或 `currency` 欄位時會查詢整張表, 效能自然差. 所以我遇到這種狀況可能至少建 `created_at` 的 index, 或是 `created_at + currency` 的 index, 視情況而定.
