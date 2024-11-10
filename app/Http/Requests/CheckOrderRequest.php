@@ -2,9 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AcceptCurrencies;
+use App\Rules\EnglishName;
+use App\Rules\PriceUpperLimit;
+use App\Rules\TitleCase;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,13 +22,13 @@ class CheckOrderRequest extends FormRequest
     {
         return [
             'id' => 'required|string',
-            'name' => 'required|string',
+            'name' => ['required', 'string', new EnglishName(), new TitleCase()],
             'address' => 'required|array:city,district,street',
             'address.city' => 'required|string',
             'address.district' => 'required|string',
             'address.street' => 'required|string',
-            'price' => 'required|numeric',
-            'currency' => 'required|string',
+            'price' => ['required', 'numeric', new PriceUpperLimit],
+            'currency' => ['required', 'string', new AcceptCurrencies()],
         ];
     }
 
