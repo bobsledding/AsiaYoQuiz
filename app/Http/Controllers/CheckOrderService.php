@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckOrderRequest;
-use App\Rules\AcceptCurrencies;
 use App\Transformers\CheckOrderResponseTransformer;
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
