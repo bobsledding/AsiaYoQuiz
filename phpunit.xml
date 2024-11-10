@@ -8,6 +8,9 @@
         <testsuite name="Rules">
             <directory>tests/Unit/Rules</directory>
         </testsuite>
+        <testsuite name="Transformers">
+            <directory>tests/Unit/Transformers</directory>
+        </testsuite>
     </testsuites>
     <source>
         <include>
